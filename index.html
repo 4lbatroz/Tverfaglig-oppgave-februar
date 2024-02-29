@@ -4,21 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kryptator</title>
+    <title>Encryption/Decryption</title>
 </head>
 <body>
-    <h1>Kryptator</h1>
+    <h1>Encryption/Decryption</h1>
     
-    <form action="/encrypt" method="post">
-        <label for="message">Skriv inn melding:</label>
+    <form action="/encrypt_decrypt" method="post">
+        <label for="task">Do you want to encrypt or decrypt:</label>
+        <input type="text" id="task" name="task" required>
+        <br>
+        <label for="message">Enter the message:</label>
         <input type="text" id="message" name="message" required>
-        <button type="submit">Krypter</button>
+        <br>
+        <label for="key">Enter the key (for decryption):</label>
+        <input type="text" id="key" name="key">
+        <br>
+        <button type="submit">Run</button>
     </form>
 
-    <h2>Resultater:</h2>
-    <p>Normal melding: <span id="normal-message"></span></p>
-    <p>Kryptert melding: <span id="encrypted-message"></span></p>
-    <p>Dekryptert melding: <span id="decrypted-message"></span></p>
+    <div id="result"></div>
 
     <script>
         // Legg til JavaScript hvis nødvendig
