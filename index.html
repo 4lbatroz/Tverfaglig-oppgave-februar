@@ -5,11 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Encryption/Decryption</title>
+
+    <script src="test.js"></script>
 </head>
 <body>
     <h1>Encryption/Decryption</h1>
     
-    <form action="/encrypt_decrypt" method="post">
+    <form id="encryptionForm">
         <label for="task">Do you want to encrypt or decrypt:</label>
         <input type="text" id="task" name="task" required>
         <br>
@@ -19,13 +21,9 @@
         <label for="key">Enter the key (for decryption):</label>
         <input type="text" id="key" name="key">
         <br>
-        <button type="submit">Run</button>
+        <button type="button" onclick="runEncryptionDecryption()">Run</button>
     </form>
 
     <div id="result"></div>
-
-    <script>
-        // Legg til JavaScript hvis nødvendig
-    </script>
 </body>
 </html>

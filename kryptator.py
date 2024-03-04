@@ -1,51 +1,31 @@
 from cryptography.fernet import Fernet
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
-# Generer en unik nøkkel for Fernet-kryptering
-def generate_key():
-    return Fernet.generate_key()
+# Generer en ny nøkkel ved oppstart
+key = Fernet.generate_key()
+fernet = Fernet(key)
 
-# Krypter en melding med Fernet
-def encrypt_message(message, key):
-    fernet = Fernet(key)
-    encrypted_message = fernet.encrypt(message.encode())
-    return encrypted_message
-
-# Dekrypter en melding med Fernet
-def decrypt_message(encrypted_message, key):
-    fernet = Fernet(key)
-    decrypted_message = fernet.decrypt(encrypted_message).decode()
-    return decrypted_message
-
-# Hovedside
 @app.route('/')
 def home():
     return render_template('index.html')
 
-# Krypterings- og dekrypteringsendepunkt
-@app.route('/encrypt_decrypt', methods=['POST'])
-def encrypt_decrypt():
-    task = request.form['task']
-    result = {}
+@app.route('/encrypt', methods=['POST'])
+def encrypt():
+    message = request.form['message']
+    enc_message = fernet.encrypt(message.encode()).decode()
+    dec_message = fernet.decrypt(enc_message.encode()).decode()
 
-    if task == 'enc':
-        key = generate_key()
-        message = request.form['message']
-        encrypted_message = encrypt_message(message, key)
-        result['result'] = f'Encrypted message: {encrypted_message}'
+    # Skriv ut meldingene i konsollen
+    print("Normal melding:", message)
+    print("Kryptert melding:", enc_message)
+    print("Dekryptert melding:", dec_message)
 
-    elif task == 'dec':
-        encrypted_message = request.form['message']
-        key = request.form['key']
-        try:
-            decrypted_message = decrypt_message(encrypted_message.encode(), key)
-            result['result'] = f'Decrypted message: {decrypted_message}'
-        except Exception as e:
-            result['error'] = f'Decryption failed: {str(e)}'
-
-    return jsonify(result)
+    return render_template('index.html',
+                           normal_message=message,
+                           encrypted_message=enc_message,
+                           decrypted_message=dec_message)
 
 if __name__ == '__main__':
     app.run(debug=True)
