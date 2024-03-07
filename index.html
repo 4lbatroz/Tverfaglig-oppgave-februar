@@ -5,25 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Encryption/Decryption</title>
-
-    <script src="test.js"></script>
 </head>
 <body>
     <h1>Encryption/Decryption</h1>
     
     <form id="encryptionForm">
-        <label for="task">Do you want to encrypt or decrypt:</label>
-        <input type="text" id="task" name="task" required>
-        <br>
         <label for="message">Enter the message:</label>
         <input type="text" id="message" name="message" required>
-        <br>
-        <label for="key">Enter the key (for decryption):</label>
-        <input type="text" id="key" name="key">
-        <br>
-        <button type="button" onclick="runEncryptionDecryption()">Run</button>
     </form>
 
+    <button id="encryptButton" onclick="encrypt()">Encrypt</button>
+
     <div id="result"></div>
+
+    <script type="module" src="test.js"></script>
+
 </body>
 </html>
