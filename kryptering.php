@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>PHP Form Example</title>
-        <link rel="stylesheet" type="text/css" href="style.css">
-    </head>
-    <body>
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHP Form Example</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div>
+        <img src="Tilbake.png" link="index.html" id="tilbake"></br>
+    </div>
 <?php
 // Store a string into the variable which
 // need to be Encrypted
@@ -50,5 +52,5 @@ print_r("Encrypted String: " . $encryption . "<br>");
 print_r("Decrypted String: " . $decryption);
 
 ?>
-    </body>
+</body>
 </html>
