@@ -7,8 +7,12 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <div>
-        <img src="Tilbake.png" link="index.html" id="tilbake"></br>
+    <div class="kryptering-form">
+        <form action="kryptering.php" method="post">
+            <label for="inputField">Skriv en melding:</label>
+            <input type="text" id="inputField" name="userInput">
+            <button type="submit">Krypter og dekrypter</button>
+        </form>
     </div>
 <?php
 // Store a string into the variable which
