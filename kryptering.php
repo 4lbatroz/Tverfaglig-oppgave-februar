@@ -8,39 +8,7 @@
     <script src="script.js"></script>
 </head>
 <body>
-    <div class="kryptering-form">
-        <form action="kryptering.php" method="post">
-            <label for="inputField">Skriv en melding:</label>
-            <input type="text" id="inputField" name="userInput">
-            <button type=submit id=myBtn >Krypter og dekrypter</button>
-        </form>
-    </div> 
-    <div class="output">
-        <p><span class="output"><?php print_r("Original String: " . $simple_string . "<br>"); ?></span></p>
-        <p><span class="output"><?php print_r("Encrypted String: " . $encryption . "<br>"); ?></span></p>
-        <p><span class="output"><?php print_r("Decrypted String: " . $decryption); ?></span></p>
-    </div>
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-
-        <!-- Modal content -->
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="close">&times;</span>
-                <h2>Modal Header</h2>
-            </div>
-            <div class="modal-body">
-                <p id="displayInput"></p>
-                
-            </div>
-            <div class="modal-footer">
-                <h3>Modal Footer</h3>
-            </div>
-        </div>
-
-    </div>
-        
-<?php
+    <?php
 // Store a string into the variable which
 // need to be Encrypted
 $simple_string = $_POST['userInput'];
@@ -72,15 +40,46 @@ $decryption_key = "GeeksforGeeks";
 $decryption=openssl_decrypt ($encryption, $ciphering, 
 		$decryption_key, $options, $decryption_iv);
 
-// Display the original string
-//print_r("Original String: " . $simple_string . "<br>");
-
-// Display the encrypted string
-//print_r("Encrypted String: " . $encryption . "<br>");
-
-// Display the decrypted string
-//print_r("Decrypted String: " . $decryption);
 
 ?>
+
+    <div class="kryptering-form">
+        <form action="kryptering.php" method="post">
+            <label for="inputField">Skriv en melding:</label>
+            <input type="text" id="inputField" name="userInput">
+            <button type=submit id=myBtn >Krypter og dekrypter</button>
+        </form>
+    </div> 
+    <div class="output">
+        <h2>Resultat</h2>
+        <div>
+            <p class="resultat"><span><?php print_r("Original String: " . $simple_string . "<br>"); ?></span></p>
+        </div>
+        <div>
+            <p class="resultat"><span><?php print_r("Encrypted String: " . $encryption . "<br>"); ?></span></p>
+        </div>
+        <div>
+            <p class="resultat"><span><?php print_r("Decrypted String: " . $decryption); ?></span></p>
+        </div>    
+    </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Modal Header</h2>
+            </div>
+            <div class="modal-body">
+                <p id="displayInput"></p>
+                
+            </div>
+            <div class="modal-footer">
+                <h3>Modal Footer</h3>
+            </div>
+        </div>
+
+    </div>
 </body>
 </html>

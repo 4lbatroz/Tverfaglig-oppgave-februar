@@ -31,3 +31,22 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+// sjekker om skriften når enden av siden og hvis den gjør putte det på en ny linje
+var tekstområde = document.getElementsByClassName("resultat");
+var inputFelt = document.getElementById("inputField");
+
+inputFelt.addEventListener("input", function() {
+    var tekst = this.value;
+    var nyTekst = tekstområde.innerText + tekst;
+    tekstområde.innerText = nyTekst;
+    
+    // Sjekk om teksten har nådd slutten av DIV-elementet
+    var tekstområdeHøyde = tekstområde.clientHeight;
+    var tekstområdeScrollHøyde = tekstområde.scrollHeight;
+    
+    if (tekstområdeScrollHøyde > tekstområdeHøyde) {
+        // Legg til linjeskift
+        tekstområde.innerText += "\n";
+    }
+});
