@@ -16,9 +16,9 @@
         </form>
     </div> 
     <div class="output">
-        <p>Original String: <span class="output"><?php echo $simple_string; ?></span></p>
-        <p>Encrypted String: <span class="output"><?php echo $encryption; ?></span></p>
-        <p>Decrypted String: <span class="output"><?php echo $decryption; ?></span></p>
+        <p><span class="output"><?php print_r("Original String: " . $simple_string . "<br>"); ?></span></p>
+        <p><span class="output"><?php print_r("Encrypted String: " . $encryption . "<br>"); ?></span></p>
+        <p><span class="output"><?php print_r("Decrypted String: " . $decryption); ?></span></p>
     </div>
     <!-- The Modal -->
     <div id="myModal" class="modal">
@@ -71,6 +71,15 @@ $decryption_key = "GeeksforGeeks";
 // Use openssl_decrypt() function to decrypt the data
 $decryption=openssl_decrypt ($encryption, $ciphering, 
 		$decryption_key, $options, $decryption_iv);
+
+// Display the original string
+//print_r("Original String: " . $simple_string . "<br>");
+
+// Display the encrypted string
+//print_r("Encrypted String: " . $encryption . "<br>");
+
+// Display the decrypted string
+//print_r("Decrypted String: " . $decryption);
 
 ?>
 </body>
