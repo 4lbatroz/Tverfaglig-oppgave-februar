@@ -50,3 +50,4 @@ inputFelt.addEventListener("input", function() {
         tekstområde.innerText += "\n";
     }
 });
+

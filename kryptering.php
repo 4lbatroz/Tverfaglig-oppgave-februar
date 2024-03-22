@@ -47,6 +47,8 @@ $decryption=openssl_decrypt ($encryption, $ciphering,
         <form action="kryptering.php" method="post">
             <label for="inputField">Skriv en melding:</label>
             <input type="text" id="inputField" name="userInput">
+            <label for="inputField">Key:</label>
+            <input type="text" id="Key" name="userInput">
             <button type=submit id=myBtn >Krypter og dekrypter</button>
         </form>
     </div> 
