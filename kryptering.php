@@ -9,47 +9,47 @@
 </head>
 <body>
     <?php
-// Store a string into the variable which
-// need to be Encrypted
-$simple_string = $_POST['userInput'];
+        // Hent input fra skjemaet
+        $simple_string = $_POST['userInput'];
+        $key = $_POST['key'];
 
-// Store the cipher method
-$ciphering = "AES-128-CTR";
+        // Sjekk om brukeren valgte å kryptere eller dekryptere
+        $action = $_POST['action'];
 
-// Use OpenSSl Encryption method
-$iv_length = openssl_cipher_iv_length($ciphering);
-$options = 0;
-
-// Non-NULL Initialization Vector for encryption
-$encryption_iv = '1234567891011121';
-
-// Store the encryption key
-$encryption_key = "GeeksforGeeks";
-
-// Use openssl_encrypt() function to encrypt the data
-$encryption = openssl_encrypt($simple_string, $ciphering,
-			$encryption_key, $options, $encryption_iv);
-
-// Non-NULL Initialization Vector for decryption
-$decryption_iv = '1234567891011121';
-
-// Store the decryption key
-$decryption_key = "GeeksforGeeks";
-
-// Use openssl_decrypt() function to decrypt the data
-$decryption=openssl_decrypt ($encryption, $ciphering, 
-		$decryption_key, $options, $decryption_iv);
-
+        if ($action == 'encrypt') {
+            // Krypter data
+            $ciphering = "AES-128-CTR";
+            $iv_length = openssl_cipher_iv_length($ciphering);
+            $options = 0;
+            $encryption_iv = '1234567891011121';
+            $encryption = openssl_encrypt($simple_string, $ciphering, $key, $options, $encryption_iv);
+            $decryption = ''; // Sett dekryptert streng til tom for krypteringsmodus
+        } elseif ($action == 'decrypt') {
+            // Dekrypter data
+            $ciphering = "AES-128-CTR";
+            $iv_length = openssl_cipher_iv_length($ciphering);
+            $options = 0;
+            $decryption_iv = '1234567891011121';
+            $decryption = openssl_decrypt($simple_string, $ciphering, $key, $options, $decryption_iv);
+            $encryption = ''; // Sett kryptert streng til tom for dekrypteringsmodus
+        }
 
 ?>
 
     <div class="kryptering-form">
-        <form action="kryptering.php" method="post">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <label for="kryp">Velg handling:</label>
+            <select id="kryp" name="action">
+                <option value="encrypt">Krypter</option>
+                <option value="decrypt">Dekrypter</option>
+            </select>
             <label for="inputField">Skriv en melding:</label>
             <input type="text" id="inputField" name="userInput">
-            <button type=submit id=myBtn >Krypter og dekrypter</button>
+            <label for="key">Key:</label>
+            <input type="text" id="key" name="key">
+            <button type="submit" id="myBtn">Utfør handling</button>
         </form>
-    </div> 
+    </div>
     <div class="output">
         <h2>Resultat</h2>
         <div>
@@ -61,25 +61,6 @@ $decryption=openssl_decrypt ($encryption, $ciphering,
         <div>
             <p class="resultat"><span><?php print_r("Decrypted String: " . $decryption); ?></span></p>
         </div>    
-    </div>
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-
-        <!-- Modal content -->
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="close">&times;</span>
-                <h2>Modal Header</h2>
-            </div>
-            <div class="modal-body">
-                <p id="displayInput"></p>
-                
-            </div>
-            <div class="modal-footer">
-                <h3>Modal Footer</h3>
-            </div>
-        </div>
-
     </div>
 </body>
 </html>
